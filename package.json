@@ -1,0 +1,15 @@
+{
+  "name": "genshen-gacha",
+  "version": "1.0.0",
+  "description": "原神抽卡简单模拟",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "Viki <vikiboss@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@vikiboss/oim": "^0.1.10",
+    "js-yaml": "^4.1.0",
+    "minimist": "^1.2.6"
+  }
+}

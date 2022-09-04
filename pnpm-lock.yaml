@@ -1,0 +1,32 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@vikiboss/oim': ^0.1.10
+  js-yaml: ^4.1.0
+  minimist: ^1.2.6
+
+dependencies:
+  '@vikiboss/oim': 0.1.10
+  js-yaml: 4.1.0
+  minimist: 1.2.6
+
+packages:
+
+  /@vikiboss/oim/0.1.10:
+    resolution: {integrity: sha512-hTKydpBevlC50MCUVX1uQ3YYNIO1XGpjKVqzhdepoWRmI12OAj3pNs4mu19fG2KY7MIg0XiJ8Rd2kXn22z3ocg==}
+    dev: false
+
+  /argparse/2.0.1:
+    resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+    dev: false
+
+  /js-yaml/4.1.0:
+    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
+    hasBin: true
+    dependencies:
+      argparse: 2.0.1
+    dev: false
+
+  /minimist/1.2.6:
+    resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+    dev: false
