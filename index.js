@@ -33,6 +33,8 @@ try {
 
   // 执行每一抽
   for (let i = 1; i <= n; i++) {
+    i5++;
+    i4++;
     if (['up1', 'up2'].includes(p)) {
       // 活动祈愿
 
@@ -41,8 +43,8 @@ try {
       const up4s = pool[UpMap[p][4]];
 
       // 轮盘模型
-      const zone5 = i5++ <= 73 ? 60 : (i5 - 73) * 600 + 60;
-      const zone4 = i4++ <= 8 ? 510 : (i4 - 8) * 5100 + 510;
+      const zone5 = i5 <= 73 ? 60 : (i5 - 73) * 600 + 60;
+      const zone4 = i4 <= 8 ? 510 : (i4 - 8) * 5100 + 510;
 
       // 产生 1-10000 随机数
       const result = oim.random(1, 10000);
@@ -57,11 +59,12 @@ try {
 
           if (shot) {
             // 不歪
-            res.push(`★ ${i5}-` + up5);
+            ensureUp5 = false;
+            res.push(`★${i5}-` + up5);
           } else {
             // 歪了
             ensureUp5 = true;
-            res.push(`☆ ${i5}-` + oim.rand([...items.role5, ...items.weapon5]));
+            res.push(`☆${i5}-` + oim.rand([...items.role5, ...items.weapon5]));
           }
         } else {
           // 大保底
@@ -77,6 +80,7 @@ try {
 
           if (shot) {
             // 不歪
+            ensureUp4 = false;
             res.push(`◆${i4}-` + oim.rand(up4s));
           } else {
             // 歪了
@@ -93,22 +97,87 @@ try {
         // 落在三星范围内
         res.push(oim.rand(items.weapon3));
       }
-    } else if (p === 'wae') {
+    } else if (p === 'wea') {
       // 武器祈愿
-      // TODO: 待完善
-    } else if (p === 'per') {
-      // 常驻祈愿
+
+      // 获取当前池子四星和五星 up
+      const up5 = pool[UpMap[p][5]];
+      const up4s = pool[UpMap[p][4]];
 
       // 轮盘模型
-      const zone5 = i5++ <= 73 ? 60 : (i5 - 73) * 600 + 60;
-      const zone4 = i4++ <= 8 ? 510 : (i4 - 8) * 5100 + 510;
+      const zone5 =
+        i5 <= 62
+          ? 70
+          : i5 <= 73
+          ? (i5 - 62) * 700 + 70
+          : (i5 - 73) * 350 + (74 - 63) * 700 + 70;
+
+      const zone4 = i4 <= 8 ? 60 : (i4 - 8) * 6000 + 600;
 
       // 产生 1-10000 随机数
       const result = oim.random(1, 10000);
 
       if (result <= zone5) {
         // 落在五星范围内
-        res.push(`☆ ${i5}-` + oim.rand([...items.role5, ...items.weapon5]));
+        if (!ensureUp5) {
+          // 小保底
+
+          // 是否不歪
+          const shot = oim.random(0, 3) >= 1;
+
+          if (shot) {
+            // 不歪
+            ensureUp5 = false;
+            res.push(`★${i5}-` + oim.rand(up5));
+          } else {
+            // 歪了
+            ensureUp5 = true;
+            res.push(`☆${i5}-` + oim.rand([...items.role5, ...items.weapon5]));
+          }
+        } else {
+          // 大保底
+          ensureUp5 = false;
+          res.push(`☆★${i5}-` + oim.rand(up5));
+        }
+        i5 = 0;
+      } else if (result <= zone4 + zone5) {
+        // 落在四星范围内
+        if (!ensureUp4) {
+          // 是否不歪
+          const shot = oim.random(0, 3) >= 1;
+
+          if (shot) {
+            // 不歪
+            ensureUp4 = false;
+            res.push(`◆${i4}-` + oim.rand(up4s));
+          } else {
+            // 歪了
+            ensureUp4 = true;
+            res.push(`◇${i4}-` + oim.rand([...items.role4, ...items.weapon4]));
+          }
+        } else {
+          // 大保底
+          ensureUp4 = false;
+          res.push(`◇◆${i4}-` + oim.rand(up4s));
+        }
+        i4 = 0;
+      } else {
+        // 落在三星范围内
+        res.push(oim.rand(items.weapon3));
+      }
+    } else if (p === 'per') {
+      // 常驻祈愿
+
+      // 轮盘模型
+      const zone5 = i5 <= 73 ? 60 : (i5 - 73) * 600 + 60;
+      const zone4 = i4 <= 8 ? 510 : (i4 - 8) * 5100 + 510;
+
+      // 产生 1-10000 随机数
+      const result = oim.random(1, 10000);
+
+      if (result <= zone5) {
+        // 落在五星范围内
+        res.push(`☆${i5}-` + oim.rand([...items.role5, ...items.weapon5]));
         i5 = 0;
       } else if (result <= zone4 + zone5) {
         // 落在四星范围内
