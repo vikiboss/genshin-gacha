@@ -1,5 +1,5 @@
 {
-  "name": "genshen-gacha",
+  "name": "genshin-gacha",
   "version": "1.0.0",
   "description": "原神抽卡简单模拟",
   "main": "index.js",
