@@ -6,7 +6,7 @@
 
 ```bash
 # 克隆仓库到本地
-git clone git@github.com/vikiboss/genshin-gacha
+git clone git@github.com:vikiboss/genshin-gacha.git
 
 # 进入到目录
 cd genshin-gacha
@@ -15,10 +15,10 @@ cd genshin-gacha
 npm i --registry=https://registry.npmmirror.com
 
 # 运行代码
-node index.js --p up1 --n 50 # 角色 UP 池-1，抽 50 次
-node index.js --p up2 --n 50 # 角色 UP 池-2，抽 50 次
-node index.js --p wea --n 50 # 武器池，抽 50 次
-node index.js --p per --n 50 # 常驻池，抽 50 次
+node index.js --p up1 --n 50 # 选择 角色 UP 池-1，抽 50 次
+node index.js --p up2 --n 50 # 选择 角色 UP 池-2，抽 50 次
+node index.js --p wea --n 50 # 选择 武器池，抽 50 次
+node index.js --p per --n 50 # 选择 常驻池，抽 50 次
 ```
 
 如果**当前祈愿池有更新**，或想**自定义祈愿池**，可以按照现有数据格式，修改目录下的 `pool.yaml` 文件即可
@@ -27,7 +27,7 @@ node index.js --p per --n 50 # 常驻池，抽 50 次
 
 抽卡机制参考：
 
-- [@Pandora Eartha​](https://www.zhihu.com/people/PandoraEartha) 大佬:[一文说清楚原神抽卡机制, 概率, 期望等问题](https://zhuanlan.zhihu.com/p/522246996)
+- [@Pandora Eartha​](https://www.zhihu.com/people/PandoraEartha) 大佬: [一文说清楚原神抽卡机制, 概率, 期望等问题](https://zhuanlan.zhihu.com/p/522246996)
 - [@一棵平衡树](https://space.bilibili.com/6165300) 大佬: [原神抽卡全机制总结](https://www.bilibili.com/read/cv10468091)
 
 ### UP 池概率机制

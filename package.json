@@ -1,15 +1,24 @@
 {
   "name": "genshin-gacha",
+  "type": "module",
   "version": "1.0.0",
   "description": "原神抽卡简单模拟",
-  "main": "index.js",
-  "scripts": {},
+  "main": "index.ts",
+  "scripts": {
+    "start": "esno index.ts"
+  },
   "keywords": [],
-  "author": "Viki <vikiboss@qq.com>",
+  "author": "Viki <hi@viki.moe>",
   "license": "MIT",
   "dependencies": {
-    "@vikiboss/oim": "^0.1.10",
-    "js-yaml": "^4.1.0",
-    "minimist": "^1.2.6"
+    "boxen": "^7.0.2",
+    "dayjs": "^1.11.7",
+    "esno": "^0.16.3",
+    "got": "^12.6.0",
+    "ora": "^6.2.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.3"
   }
 }
