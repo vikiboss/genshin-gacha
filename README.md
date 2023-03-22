@@ -1,6 +1,6 @@
 # 原神抽卡简单模拟
 
-> 需要安装 [node](https://nodejs.org/) 环境
+> 要求配置好 [Git](https://git-scm.com/) 和 [Node.js](https://nodejs.org/) 环境。
 
 ## 使用
 
@@ -14,14 +14,9 @@ cd genshin-gacha
 # 安装依赖 (使用阿里源)
 npm i --registry=https://registry.npmmirror.com
 
-# 运行代码
-node index.js --p up1 --n 50 # 选择 角色 UP 池-1，抽 50 次
-node index.js --p up2 --n 50 # 选择 角色 UP 池-2，抽 50 次
-node index.js --p wea --n 50 # 选择 武器池，抽 50 次
-node index.js --p per --n 50 # 选择 常驻池，抽 50 次
+# 执行抽卡模拟，根据终端提示进行操作
+npm start
 ```
-
-如果**当前祈愿池有更新**，或想**自定义祈愿池**，可以按照现有数据格式，修改目录下的 `pool.yaml` 文件即可
 
 ## 抽卡机制
 
