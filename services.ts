@@ -24,7 +24,8 @@ export interface PoolItem {
 
 /** 获取卡池列表，可选是否只返回当前卡池 */
 export async function fetchPools(isCurrent = true) {
-  const api = 'https://webstatic.mihoyo.com/hk4e/gacha_info/cn_gf01/gacha/list.json'
+  const api =
+    'https://proxy.viki.moe/hk4e/gacha_info/cn_gf01/gacha/list.json?proxy-host=webstatic.mihoyo.com'
   const res = await got.get(api).json<PoolRes>()
   const { list = [] } = res?.data ?? {}
 
@@ -42,21 +43,21 @@ export interface PoolDetailRes {
   gacha_type: number
   r3_baodi_prob: string
   r3_prob: string
-  r3_prob_list: R3ProbItem[]
+  r3_prob_list: ProbItem[]
   r4_baodi_prob: string
   r4_prob: string
-  r4_prob_list: R4ProbItem[]
-  r4_up_items: null
+  r4_prob_list: ProbItem[]
+  r4_up_items: null | UpItem[]
   r4_up_prob: string
   r5_baodi_prob: string
   r5_prob: string
-  r5_prob_list: R5ProbItem[]
-  r5_up_items: null
+  r5_prob_list: ProbItem[]
+  r5_up_items: null | UpItem[]
   r5_up_prob: string
   title: string
 }
 
-export interface R3ProbItem {
+export interface ProbItem {
   is_up: number
   item_id: number
   item_name: string
@@ -65,26 +66,18 @@ export interface R3ProbItem {
   rank: number
 }
 
-export interface R4ProbItem {
-  is_up: number
+export interface UpItem {
+  item_attr: string
+  item_color: string
   item_id: number
+  item_img: string
   item_name: string
   item_type: string
-  order_value: number
-  rank: number
-}
-
-export interface R5ProbItem {
-  is_up: number
-  item_id: number
-  item_name: string
-  item_type: string
-  order_value: number
-  rank: number
+  item_type_cn: string
 }
 
 /** 通过卡池 id 获取详细信息 */
 export async function fetchPoolDetail(gachaId: string) {
-  const api = `https://webstatic.mihoyo.com/hk4e/gacha_info/cn_gf01/${gachaId}/zh-cn.json`
+  const api = `https://proxy.viki.moe/hk4e/gacha_info/cn_gf01/${gachaId}/zh-cn.json?proxy-host=webstatic.mihoyo.com`
   return await got.get(api).json<PoolDetailRes>()
 }

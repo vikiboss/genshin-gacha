@@ -1,21 +1,31 @@
 import ora from 'ora'
 import prompts, { type PromptObject } from 'prompts'
+import { getR5UpRoles, stripTags } from './utils'
 import { fetchPoolDetail, fetchPools } from './services'
 
 const loading = ora({ color: 'cyan' })
 
-loading.start('正在获取当前卡池列表...')
+loading.start('正在获取当前版本卡池列表...')
 
 const pools = await fetchPools()
+const poolDetails = await Promise.all(pools.map(e => fetchPoolDetail(e.gacha_id)))
 
-loading.succeed('当前卡池列表获取完毕')
+poolDetails.forEach(item => {
+  item.title = stripTags(item.title)
+  item.content = stripTags(item.content)
+})
+
+loading.succeed('当前版本卡池列表获取完毕')
 
 const questions: PromptObject[] = [
   {
     type: 'select',
     name: 'pool',
     message: '请选择卡池',
-    choices: pools.map(e => ({ title: e.gacha_name, value: e.gacha_id }))
+    choices: poolDetails.map(e => ({
+      title: `${e.title} - ${getR5UpRoles(e)}`,
+      value: e.title
+    }))
   },
   {
     type: 'number',
