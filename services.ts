@@ -4,6 +4,26 @@ import isBetween from 'dayjs/plugin/isBetween'
 
 dayjs.extend(isBetween)
 
+/** 获取卡池列表，可选是否只返回当前卡池 */
+export async function fetchPools(isCurrent = true) {
+  const api =
+    'https://proxy.viki.moe/hk4e/gacha_info/cn_gf01/gacha/list.json?proxy-host=webstatic.mihoyo.com'
+  const res = await got.get(api).json<PoolRes>()
+  const { list = [] } = res?.data ?? {}
+
+  if (!isCurrent) {
+    return list
+  }
+
+  return list.filter(e => dayjs().isBetween(e.begin_time, e.end_time))
+}
+
+/** 通过卡池 id 获取详细信息 */
+export async function fetchPoolDetail(gachaId: string) {
+  const api = `https://proxy.viki.moe/hk4e/gacha_info/cn_gf01/${gachaId}/zh-cn.json?proxy-host=webstatic.mihoyo.com`
+  return await got.get(api).json<PoolDetailRes>()
+}
+
 export interface PoolRes {
   data: PoolData
   message: string
@@ -20,20 +40,6 @@ export interface PoolItem {
   gacha_id: string
   gacha_name: string
   gacha_type: number
-}
-
-/** 获取卡池列表，可选是否只返回当前卡池 */
-export async function fetchPools(isCurrent = true) {
-  const api =
-    'https://proxy.viki.moe/hk4e/gacha_info/cn_gf01/gacha/list.json?proxy-host=webstatic.mihoyo.com'
-  const res = await got.get(api).json<PoolRes>()
-  const { list = [] } = res?.data ?? {}
-
-  if (!isCurrent) {
-    return list
-  }
-
-  return list.filter(e => dayjs().isBetween(e.begin_time, e.end_time))
 }
 
 export interface PoolDetailRes {
@@ -74,10 +80,4 @@ export interface UpItem {
   item_name: string
   item_type: string
   item_type_cn: string
-}
-
-/** 通过卡池 id 获取详细信息 */
-export async function fetchPoolDetail(gachaId: string) {
-  const api = `https://proxy.viki.moe/hk4e/gacha_info/cn_gf01/${gachaId}/zh-cn.json?proxy-host=webstatic.mihoyo.com`
-  return await got.get(api).json<PoolDetailRes>()
 }

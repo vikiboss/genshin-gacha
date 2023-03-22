@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@types/prompts': ^2.4.3
   boxen: ^7.0.2
+  chalk: ^5.2.0
   dayjs: ^1.11.7
   esno: ^0.16.3
   got: ^12.6.0
@@ -11,6 +12,7 @@ specifiers:
 
 dependencies:
   boxen: 7.0.2
+  chalk: 5.2.0
   dayjs: 1.11.7
   esno: 0.16.3
   got: 12.6.0

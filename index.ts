@@ -35,7 +35,11 @@ const questions: PromptObject[] = [
 ]
 
 const { pool, count } = await prompts(questions)
+const p = poolDetails.find(e => e.title === pool)
 
-console.log(pool, count)
-
-// TODO: 完善抽卡逻辑
+const status = {
+  totalCount: count,
+  currentCount: 0,
+  isNextR5Up: false,
+  isNextR4Up: false
+}
