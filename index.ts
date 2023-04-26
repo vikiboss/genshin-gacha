@@ -43,3 +43,5 @@ const status = {
   isNextR5Up: false,
   isNextR4Up: false
 }
+
+console.log(pool, count)
