@@ -11,15 +11,15 @@
   "author": "Viki <hi@viki.moe>",
   "license": "MIT",
   "dependencies": {
-    "boxen": "^7.0.2",
-    "chalk": "^5.2.0",
-    "dayjs": "^1.11.7",
-    "got": "^12.6.0",
-    "ora": "^6.2.0",
+    "boxen": "^7.1.1",
+    "chalk": "^5.3.0",
+    "dayjs": "^1.11.13",
+    "got": "^12.6.1",
+    "ora": "^6.3.1",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.3",
-    "esno": "^0.16.3"
+    "@types/prompts": "^2.4.9",
+    "esno": "^4.8.0"
   }
 }
