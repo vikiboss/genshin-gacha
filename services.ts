@@ -1,15 +1,15 @@
+// https://operation-webstatic.mihoyo.com/gacha_info/hk4e/cn_gf01/gacha/list.json
+
 import got from "got";
 
 /** 获取卡池列表，可选是否只返回当前卡池 */
 export async function fetchPools(isCurrent = true) {
 	const api =
-		"https://webstatic.mihoyo.com/hk4e/gacha_info/cn_gf01/gacha/list.json";
-	const res = await got.get(api).json<PoolRes>();
+		"https://operation-webstatic.mihoyo.com/gacha_info/hk4e/cn_gf01/gacha/list.json";
+	const res = await got.get(getProxyUrl(api)).json<PoolRes>();
 	const { list = [] } = res?.data ?? {};
 
-	if (!isCurrent) {
-		return list;
-	}
+	if (!isCurrent) return list;
 
 	return list.filter((e) => {
 		const now = new Date().getTime();
@@ -21,8 +21,15 @@ export async function fetchPools(isCurrent = true) {
 
 /** 通过卡池 id 获取详细信息 */
 export async function fetchPoolDetail(gachaId: string) {
-	const api = `https://webstatic.mihoyo.com/hk4e/gacha_info/cn_gf01/${gachaId}/zh-cn.json`;
-	return await got.get(api).json<PoolDetailRes>();
+	const api = `https://operation-webstatic.mihoyo.com/gacha_info/hk4e/cn_gf01/${gachaId}/zh-cn.json`;
+	return await got.get(getProxyUrl(api)).json<PoolDetailRes>();
+}
+
+function getProxyUrl(url: string) {
+	const urlObj = new URL(url);
+	urlObj.searchParams.set("proxy-host", urlObj.host);
+	urlObj.host = "proxy.viki.moe";
+	return urlObj.href;
 }
 
 export interface PoolRes {
